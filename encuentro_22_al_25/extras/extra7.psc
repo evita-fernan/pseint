@@ -43,6 +43,7 @@ SubProceso insertarDatosyCalcular(matrizDatos, M, N)
 	//El ciclo comienza en 1 y finaliza en 5 para que coincidan el numero del dia y del producto.
 	Para i=1 hasta 5
 		Para j=1 hasta 5
+			
 			Segun j Hacer
 				1:
 					dia = "Lunes"
@@ -62,7 +63,7 @@ SubProceso insertarDatosyCalcular(matrizDatos, M, N)
 			matrizDatos[i,j] = prod
 			
 		FinPara
-		
+		//a medida que se mueve por cada columna manteniendo la fila fija
 		matrizDatos[k,j] = suma
 		k = k+1
 		suma = 0
@@ -102,8 +103,8 @@ FinSubProceso
 
 SubProceso mostrarMatrizConFormato(matrizFormato, M, N)
 	
-	Definir i, j Como Entero
-	
+//	Definir i, j Como Entero
+//	
 //	Para i=0 hasta M-1
 //		Para j=0 hasta N-1
 //			
@@ -154,7 +155,7 @@ SubProceso mostrarMatrizConFormato(matrizFormato, M, N)
 	matrizFormato[5,0]="  PRODUCTO 5  "
 	matrizFormato[6,0]="TOTAL SEMANA  "
 	matrizFormato[7,0]="PROD + VENDIDO"
-	matrizFormato[6,6]=""
+	matrizFormato[6,6]="              "
 	matrizFormato[7,6]="              "
 	
 FinSubProceso
@@ -168,15 +169,16 @@ SubProceso completarMatriz(matrizDatos, matrizFormato, M, N)
 	
 	Para i=1 hasta 7
 		Para j=1 hasta 6
+			
 			matrizFormato[i,j] = ConvertirATexto(matrizDatos[i,j]) //se convierte a texto porque matriz formato se definio como caracter
+			
 			Segun matrizDatos[7,j]
 				1:matrizFormato[7,j]=" PRODUCTO 1   "
 				2:matrizFormato[7,j]=" PRODUCTO 2   "
 				3:matrizFormato[7,j]=" PRODUCTO 3   "
 				4:matrizFormato[7,j]=" PRODUCTO 4   "
 				5:matrizFormato[7,j]=" PRODUCTO 5   "
-					
-			FinSegun	
+			FinSegun
 			
 		FinPara
 		Escribir ""
@@ -188,17 +190,16 @@ SubProceso completarMatriz(matrizDatos, matrizFormato, M, N)
 	Para i=0 hasta M-1
 		Para j=0 hasta N-1
 			
-			
 			Si i==0 o j==0 o i==7 Entonces
-				escribir Sin Saltar "[" matrizFormato[i,j] "]"
-			sino
+				
+				Escribir Sin Saltar "[" matrizFormato[i,j] "]"
+				
+			Sino
+				
 			    Escribir Sin Saltar "[ " matrizFormato[i,j]
-				para k=0 hasta 6-(Longitud(matrizFormato[i,j]))
-					Escribir Sin Saltar " " 
-				FinPara
-				Escribir Sin Saltar"]"
+				Escribir Sin Saltar" ]"
+				
 			FinSi
-			
 			
 		FinPara
 		Escribir ""
